@@ -28,8 +28,18 @@
  *      .catch((error) => console.log(error.message)) // 'Error: Wrong parameter is passed!
  *                                                    //  Ask her again.';
  */
-function willYouMarryMe(/* isPositiveAnswer */) {
-  throw new Error('Not implemented');
+async function willYouMarryMe(isPositiveAnswer) {
+  const yesAnsw = 'Hooray!!! She said "Yes"!';
+  const noAnsw = 'Oh no, she said "No".';
+  const errr = new Error('Wrong parameter is passed! Ask her again.');
+  if (isPositiveAnswer === true) {
+    return new Promise((res) => res(yesAnsw));
+  // eslint-disable-next-line no-else-return
+  } else if (isPositiveAnswer === false) {
+    return new Promise((res) => res(noAnsw));
+  } else {
+    return new Promise((res, req) => req(errr));
+  }
 }
 
 
@@ -48,8 +58,9 @@ function willYouMarryMe(/* isPositiveAnswer */) {
  *    })
  *
  */
-function processAllPromises(/* array */) {
-  throw new Error('Not implemented');
+function processAllPromises(array) {
+  // throw new Error('Not implemented');
+  return Promise.all(array);
 }
 
 /**
@@ -71,8 +82,9 @@ function processAllPromises(/* array */) {
  *    })
  *
  */
-function getFastestPromise(/* array */) {
-  throw new Error('Not implemented');
+function getFastestPromise(array) {
+  // throw new Error('Not implemented');
+  return Promise.race(array);
 }
 
 /**
@@ -94,8 +106,25 @@ function getFastestPromise(/* array */) {
  */
 function chainPromises(/* array, action */) {
   throw new Error('Not implemented');
+  // async function writePromiseDateToArr(arr, num) {
+  //   const results = [];
+  //   if (arr.length - 1 === num) {
+  //     const numb = await arr[num];
+  //     results.push(numb);
+  //     return results;
+  //   }
+  //   const numb = await arr[num];
+  //   results.push(numb);
+  //   return writePromiseDateToArr(arr, num + 1);
+  // }
+  // try {
+  //   const sss = await writePromiseDateToArr(array, 0);
+  //   const sumRes = sss.reduce(action);
+  //   return new Promise((res) => res(sumRes));
+  // } catch (error) {
+  //   console.error(error);
+  // }
 }
-
 module.exports = {
   willYouMarryMe,
   processAllPromises,
